@@ -1,9 +1,7 @@
 package hellojpa;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
+import java.util.List;
 
 public class JpaMain {
 
@@ -34,6 +32,24 @@ public class JpaMain {
             /** 4. 회원 삭제 */
 //            Member findMember = em.find(Member.class, 1L);
 //            em.remove(findMember);
+
+            /** JPQL - 1. 전체 회원 조회 */
+//            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+//                    .getResultList();
+//
+//            for (Member member : result) {
+//                System.out.println("member" + member.getId() +".getName() = " + member.getName());
+//            }
+
+            /** JPQL - 2. 페이지네이션 (슬라이스 해서 조회??) */
+            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+                    .setFirstResult(1)
+                    .setMaxResults(4)
+                    .getResultList();
+
+            for (Member member : result) {
+                System.out.println("member" + member.getId() +".getName() = " + member.getName());
+            }
 
 
             tx.commit();
