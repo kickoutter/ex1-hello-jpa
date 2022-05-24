@@ -19,5 +19,15 @@
       <artifactId>h2</artifactId>
       <version>1.4.200</version>
     </dependency>
+    <!-- JAVA 11 버젼에서 에러뜨면 이거 추가하면 없어짐  -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.3.0</version>
+    </dependency>
   </dependencies>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
 </project>
