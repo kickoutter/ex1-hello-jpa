@@ -18,7 +18,7 @@ public class JpaMain {
 //            member.setId(2L);
 //            member.setName("HelloB");
 //
-//            em.persist(member); // EntityManager의 1차캐시에 들어감 (영속성을 갖게됨)
+//            em.persist(member); // EntityManager의 1차캐시(PersistenceContext)에 들어감 (영속성을 갖게됨)
 
             /** 2. 회원 수정 */
 //            Member findMember = em.find(Member.class, 1L);
@@ -51,7 +51,7 @@ public class JpaMain {
 //                System.out.println("member" + member.getId() +".getName() = " + member.getName());
 //            }
 
-            /** 영속성 컨텍스트1 */
+            /** 영속성 컨텍스트1(PersistenceContext1) */
 //            // 비영속
 //            Member member = new Member();
 //            member.setId(100L);
@@ -73,7 +73,7 @@ public class JpaMain {
 //
 //            Member findMember = em.find(Member.class, 101L);
 //
-//              // tx.commit()이 발동되기 전이라, 아직 Entity는 EntityManager의 1차캐시에 있기
+//              // tx.commit()이 발동되기 전이라, 아직 Entity는 EntityManager의 1차캐시(영속성 컨텍스트)에 있기
 //              // 때문에, 쿼리가 프린트문 다음에 나온다.
 //            System.out.println("findMember.getId() = " + findMember.getId());
 //            System.out.println("findMember.getName() = " + findMember.getName());
@@ -112,6 +112,20 @@ public class JpaMain {
 //            Member findmember = em.find(Member.class, 160L);
 //
 //            em.remove(findmember);
+
+            /** 준영속 상태 */
+            // em.persist()를 안해줬지만, DB에 있는 엔티티 이므로
+            // em.find() 하면서 1차캐시로 가져오면서 영속 상태가 됨.
+            Member findMember = em.find(Member.class, 150L);
+            findMember.setName("AAAA");
+
+            // 위처럼 변경감지(dirty checking)하여 "AAAA"로 이름을 변경하였지만
+            // em.detach()로 영속상태에서 빼므로서 tx.commit()해도 아무일도 일어나지 않음
+            // 따라서 update문도 찍히지 않음.
+            em.detach(findMember); // <- 특정 엔티티만 준영속 상태로 전환
+            em.clear(); // <- 영속성 컨텍스트(1차 캐시)를 완전히 초기화
+
+            System.out.println("==================");
 
 
             tx.commit();
