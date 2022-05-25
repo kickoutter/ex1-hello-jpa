@@ -16,6 +16,11 @@ public class JpaMain2 {
         tx.begin();
         try {
 
+            Member2 member2 = new Member2();
+            member2.setId(1L);
+            member2.setUsername("A");
+            member2.setRoleType(RoleType.ADMIN);
+
             tx.commit();
         } catch (Exception e) {
             tx.rollback();

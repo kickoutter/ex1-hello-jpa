@@ -1,6 +1,8 @@
 package hellojpa2;
 
 import javax.persistence.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -14,17 +16,28 @@ public class Member2 {
 
     private Integer age;
 
+    // EnumType은 무조건 EnumType.STRING으로 써야한다!!
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdDate;
 
+    // 과거 자바 버젼에는 LocalDate라는 타입이 없어서 이런방식으로 해야한다.
     @Temporal(TemporalType.TIMESTAMP)
     private Date lastModifiedDate;
 
+//    // 최신 자바 버젼은
+//    private LocalDate testLocalDate;
+//    private LocalDateTime testLocalDateTime;
+
     @Lob
     private String description;
+
+    // 매핑 하기 싫으면 이거 사용, 메모리상에서 임시로 값 보고싶을 씀
+    @Transient
+    private int temp;
+
 
     public Member2() {
     }
