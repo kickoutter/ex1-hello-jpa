@@ -98,6 +98,8 @@ public class JpaMain {
 //            em.persist(member1);
 //            em.persist(member2);
 //
+//            em.flush(); // flush를 해주면 쿼리문이 여기서 발생됨 (여기서 플러쉬 되기 때문).
+//
 //            System.out.println("=== 이거 이후로 쿼리문이 나올거임 ===");
 
             /** 영속성 컨텍스트2 - 변경감지(dirty checking) */
