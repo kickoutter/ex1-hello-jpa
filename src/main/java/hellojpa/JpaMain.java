@@ -42,14 +42,25 @@ public class JpaMain {
 //            }
 
             /** JPQL - 2. 페이지네이션 (슬라이스 해서 조회??) */
-            List<Member> result = em.createQuery("select m from Member as m", Member.class)
-                    .setFirstResult(1)
-                    .setMaxResults(4)
-                    .getResultList();
+//            List<Member> result = em.createQuery("select m from Member as m", Member.class)
+//                    .setFirstResult(1)
+//                    .setMaxResults(4)
+//                    .getResultList();
+//
+//            for (Member member : result) {
+//                System.out.println("member" + member.getId() +".getName() = " + member.getName());
+//            }
 
-            for (Member member : result) {
-                System.out.println("member" + member.getId() +".getName() = " + member.getName());
-            }
+            /** 영속성 컨텍스트1 */
+            // 비영속
+            Member member = new Member();
+            member.setId(100L);
+            member.setName("HelloJPA");
+
+            // 영속
+            System.out.println("=== BEFORE ===");
+            em.persist(member);
+            System.out.println("=== AFTER ===");
 
 
             tx.commit();
