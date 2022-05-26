@@ -12,8 +12,12 @@ public class Member {
     @Column(name = "USERNAME")
     private String name;
 
-    @Column(name = "TEAM_ID")
-    private Long teamId;
+//    @Column(name = "TEAM_ID")
+//    private Long teamId;
+    // 객체지향모델링
+    @ManyToOne
+    @JoinColumn(name = "TEAM_ID")
+    private Team team;
 
     public Long getId() {
         return id;
@@ -31,11 +35,11 @@ public class Member {
         this.name = name;
     }
 
-    public Long getTeamId() {
-        return teamId;
+    public Team getTeam() {
+        return team;
     }
 
-    public void setTeamId(Long temaId) {
-        this.teamId = temaId;
+    public void setTeam(Team team) {
+        this.team = team;
     }
 }
