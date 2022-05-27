@@ -10,7 +10,7 @@ public class Member {
     private Long id;
 
     @Column(name = "USERNAME")
-    private String name;
+    private String username;
 
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
@@ -27,12 +27,12 @@ public class Member {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Team getTeam() {
