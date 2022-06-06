@@ -13,6 +13,7 @@ public class Team {
 
     private String name;
 
+    // 다대'일'
     @OneToMany(mappedBy = "team")
     private List<Member> members = new ArrayList<Member>();
 
