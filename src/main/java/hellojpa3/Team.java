@@ -14,9 +14,9 @@ public class Team {
     private String name;
 
     @OneToMany(mappedBy = "team")
-    List<Member> members = new ArrayList<Member>();
+    private List<Member> members = new ArrayList<Member>();
 
-    // 연관관계 편의 메소드!!
+    // 연관관계 편의 메소!!
     public void addMember(Member member) {
         member.setTeam(this);
         members.add(member);
