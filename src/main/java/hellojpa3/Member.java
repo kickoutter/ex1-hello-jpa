@@ -14,10 +14,16 @@ public class Member {
 
 //    @Column(name = "TEAM_ID")
 //    private Long teamId;
-    // 객체지향모델링
+
+    /** 객체지향모델링, 이거 사용해라 다대일 */
     @ManyToOne
     @JoinColumn(name = "TEAM_ID")
     private Team team;
+
+//    /** Team이 연관관계 주인인 일대다 관계에 읽기전용으로 양방향 처럼 만든거이다. 쓰지마라! */
+//    @ManyToOne
+//    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
+//    private Team team;
 
     public Long getId() {
         return id;
