@@ -25,6 +25,14 @@ public class Member {
 //    @JoinColumn(name = "TEAM_ID", insertable = false, updatable = false)
 //    private Team team;
 
+    /** 일대일[1:1]: 주 테이블(Member)에 외래키 단방향 */
+    // => 결론 주 테이블에 외래키 놓고 사용해라 1:1 할거면
+    @OneToOne
+    @JoinColumn(name = "Locker_ID")
+    private Locker locker;
+
+
+
     public Long getId() {
         return id;
     }
