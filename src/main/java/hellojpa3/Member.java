@@ -1,6 +1,8 @@
 package hellojpa3;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Member {
@@ -30,6 +32,16 @@ public class Member {
     @OneToOne
     @JoinColumn(name = "Locker_ID")
     private Locker locker;
+
+//    /** 다대다[N:M]: 객체는 컬렉션을 사용해 객체 2개로 다대다 관계 가능 */
+//    @ManyToMany
+//    @JoinTable(name = "MEMBER_PRODUCT")
+//    private List<Product> products = new ArrayList<>();
+
+    /** 다대다를 -> 일대다,다대일로 바꾸고 JoinTable을 Entitiy로 승격시킴! */
+    @OneToMany(mappedBy = "member")
+    private List<MemberProduct> memberProducts = new ArrayList<>();
+
 
 
 
