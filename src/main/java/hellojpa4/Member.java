@@ -18,7 +18,7 @@ public class Member extends BaseEntity {
 //    private Long teamId;
 
     /** 객체지향모델링, 이거 사용해라 다대일 */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "TEAM_ID")
     private Team team;
 
